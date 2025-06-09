@@ -2,7 +2,6 @@ import { BlogFooter } from "@/components/blog-footer";
 import { BlogHeader } from "@/components/blog-header";
 import { TagBadge } from "@/components/tag-badge";
 import { fetchPostFromApi } from "@/lib/api-service";
-import { getCurrentProjectDomain } from "@/lib/domain-mapper";
 import { formatDate } from "@/lib/utils";
 import { ArrowLeft, Clock, User } from "lucide-react";
 import Image from "next/image";
@@ -23,7 +22,7 @@ export default async function PostPage({
 
   try {
     // 현재 프로젝트의 도메인 자동 감지
-    const communityUrl = "https://vmseries.com"; // 하드코딩된 도메인 (pbn-domains.json 기반)
+    const communityUrl = "https://koshikoshi.net"; // 하드코딩된 도메인 (pbn-domains.json 기반)
 
     // API에서 게시물 데이터 가져오기
     const post = await fetchPostFromApi(communityUrl, postId);
@@ -77,7 +76,7 @@ export default async function PostPage({
                   <div className="flex items-center">
                     <Clock className="w-4 h-4 mr-1" />
                     <time dateTime={post.date}>
-                      {formatDate(new Date(post.date))}
+                      {formatDate(new Date(post.date).toISOString())}
                     </time>
                   </div>
                 )}
